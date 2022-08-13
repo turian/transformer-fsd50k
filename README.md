@@ -63,6 +63,7 @@ in task: add
 # https://github.com/facebookresearch/fairseq/issues/1280
 and in common: add
   tensorboard_logdir: tb
+  wandb_project: wav2vec2-surge-pitch
 
 # Maybe also play with
 #  batch_size: 4
@@ -75,3 +76,7 @@ fairseq-hydra-train task.data=/home/ubuntu/surge.manifest/ --config-dir $FAIRSEQ
 
 # Here are librispeech instructions
 https://cloud.google.com/tpu/docs/tutorials/wav2vec2-pytorch
+
+
+sudo pip3 install wandb
+
