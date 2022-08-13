@@ -53,15 +53,24 @@ export PYTHONPATH=$PYTHONPATH:$FAIRSEQ
 
 
 # Edit  $FAIRSEQ/examples/wav2vec/config/pretraining/wav2vec2_base_librispeech.yaml
+# or $FAIRSEQ/examples/wav2vec/config/pretraining/wav2vec2_large_librivox.yaml
 for distributed_world_size: 1
+# Or the number of GPUs you have
 not 64
 in task: add
   sample_rate: 44100
 # Might want to "adjust the encoder architecture to keep 100hz rate"
 # https://github.com/facebookresearch/fairseq/issues/1280
+and in common: add
+  tensorboard_logdir: tb
+
+# Maybe also play with
+#  batch_size: 4
+#  num_workers: 6
 
 fairseq-hydra-train task.data=/home/ubuntu/surge.manifest/ --config-dir $FAIRSEQ/examples/wav2vec/config/pretraining --config-name wav2vec2_base_librispeech
-#Or use wav2vec2_large_librivox for large
+#Or 
+fairseq-hydra-train task.data=/home/ubuntu/surge.manifest/ --config-dir $FAIRSEQ/examples/wav2vec/config/pretraining --config-name wav2vec2_large_librivox
 
 
 # Here are librispeech instructions
